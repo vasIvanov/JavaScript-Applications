@@ -36,6 +36,7 @@ handlers.getDetails = function (ctx) {
             ctx.image = res[0].image;
             ctx.author = res[0].author;
             ctx.joined = res[0].joined;
+            ctx.id = ctx.params.id.slice(1)
             ctx.isAuthor = res[0].author === sessionStorage.getItem('username');
             ctx.loadPartials({
                 header: '../templates/common/header.hbs',
@@ -45,4 +46,21 @@ handlers.getDetails = function (ctx) {
             });
         });
         
+}
+
+handlers.joinEvent = function (ctx) {
+    let id = ctx.params.id.slice(1);
+    let event = {};
+    eventService.getEventDetails(id)
+        .then(function (res) {
+            event = res[0];
+            let joins = Number(event.joined) + 1;
+            event.joined = joins;
+            eventService.joinEvent(id, event)
+                .then(function () {
+                    notifications.showSuccess('Joined!');
+                    ctx.redirect(`#/`);
+                })
+        })
+    
 }
