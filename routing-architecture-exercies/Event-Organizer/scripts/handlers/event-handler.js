@@ -56,11 +56,52 @@ handlers.joinEvent = function (ctx) {
             event = res[0];
             let joins = Number(event.joined) + 1;
             event.joined = joins;
-            eventService.joinEvent(id, event)
+            eventService.editEvent(id, event)
                 .then(function () {
                     notifications.showSuccess('Joined!');
                     ctx.redirect(`#/`);
-                })
-        })
+                });
+        });
+}
+
+handlers.getEditEvent = function (ctx) {
+    let id = ctx.params.id.slice(1);
+    ctx.isAuth = true;
+    eventService.getEventDetails(id)
+        .then(res => {
+            let info = res[0];
+            ctx.id = id;
+            ctx.event = info.event;
+            ctx.description = info.description;
+            ctx.date = info.date;
+            ctx.image = info.image;
+            ctx.author = info.author;
+            ctx.joined = info.joined;
+            ctx.username = sessionStorage.getItem('username');
+            ctx.loadPartials({
+                header: '../templates/common/header.hbs',
+                footer: '../templates/common/footer.hbs'
+            }).then(function () {
+                this.partial('templates/event/edit-event.hbs');
+            });
+        });
+}
+
+handlers.postEditEvent = function (ctx) {
+    let id = ctx.params.id.slice(1);
     
+    let {name, dateTime, description, imageURL, organizer, peopleInterestedIn} = {...ctx.params};
+    let editedEvent = {
+        event: name,
+        date: dateTime,
+        description,
+        image: imageURL,
+        author: organizer,
+        joined: peopleInterestedIn
+    };
+    eventService.editEvent(id, editedEvent)
+        .then(function () {
+            notifications.showSuccess(`Edited!`);
+            ctx.redirect(`#/`);
+        })
 }

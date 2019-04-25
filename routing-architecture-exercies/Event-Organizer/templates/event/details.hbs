@@ -13,8 +13,8 @@
         <p class="infoType">Organizer: <small>{{author}}</small></p>
       </div>
       {{#if isAuthor}}
-      <a href="#" class="btn btn-primary btn-lg">Edit the event</a>
-      <a href="#" class="btn btn-danger btn-lg">Close the event</a>
+      <a href="#/edit/:{{id}}" class="btn btn-primary btn-lg">Edit the event</a>
+      <a href="#/delete/:{{id}}" class="btn btn-danger btn-lg">Close the event</a>
       {{else}}
       <a href="#/join/:{{id}}" class="btn btn-info btn-lg">Join the event</a>
       {{/if}}

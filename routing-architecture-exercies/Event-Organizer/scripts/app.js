@@ -19,6 +19,8 @@ $(() => {
     this.post('#/createEvent', handlers.postCreateEvent)
     this.get(`#/details/:id`, handlers.getDetails);
     this.get(`#/join/:id`, handlers.joinEvent);
+    this.get(`#/edit/:id`, handlers.getEditEvent);
+    this.post(`#/edit/:id`, handlers.postEditEvent);
     // ADD YOUR ROUTES HERE
 
   });

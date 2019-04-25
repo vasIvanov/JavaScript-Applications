@@ -22,7 +22,7 @@ const eventService = (() => {
         return kinvey.get('appdata', `events?query={"_id":"${id}"}`);
     }
 
-    function joinEvent(id, newEvent) {
+    function editEvent(id, newEvent) {
         
         return kinvey.update('appdata', `events/${id}`, 'kinvey', newEvent)
     }
@@ -31,6 +31,6 @@ const eventService = (() => {
         getAllEvents,
         getAllMyEvents,
         getEventDetails,
-        joinEvent
+        editEvent
     }
 })()
