@@ -60,11 +60,18 @@ handlers.loginUser = function (ctx) {
 handlers.getProfile = function (ctx) {
   ctx.username = sessionStorage.getItem('username');
   ctx.isAuth = userService.isAuth();
-  ctx.loadPartials({
-    header: '../templates/common/header.hbs',
-    footer: '../templates/common/footer.hbs'
-  }).then(function () {
-    this.partial('./templates/user/profile.hbs');
-  })
+  let id = sessionStorage.getItem('id');
+  eventService.getAllMyEvents(id)
+    .then(function (res) {
+      ctx.eventsCount = res.length;
+      ctx.events = res;
+      ctx.loadPartials({
+        header: '../templates/common/header.hbs',
+        footer: '../templates/common/footer.hbs'
+      }).then(function () {
+        this.partial('./templates/user/profile.hbs');
+      })
+    })
+  
   
 }

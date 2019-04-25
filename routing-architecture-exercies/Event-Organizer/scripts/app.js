@@ -17,6 +17,7 @@ $(() => {
 
     this.get('#/createEvent', handlers.getCreateEvent);
     this.post('#/createEvent', handlers.postCreateEvent)
+    this.get(`#/details/:id`, handlers.getDetails);
     // ADD YOUR ROUTES HERE
 
   });

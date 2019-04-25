@@ -24,3 +24,14 @@ handlers.postCreateEvent = function (ctx) {
             notifications.showError(err.responseJSON.description);
         });
 }
+
+handlers.getDetails = function (ctx) {
+    ctx.isAuth = true;
+    ctx.username = sessionStorage.getItem('username');
+    ctx.loadPartials({
+        header: '../templates/common/header.hbs',
+        footer: '../templates/common/footer.hbs'
+      }).then(function () {
+        this.partial('templates/event/create-event.hbs');
+      })
+}

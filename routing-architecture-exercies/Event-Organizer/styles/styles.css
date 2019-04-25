@@ -84,8 +84,8 @@ footer p{
 
 
 .eventPicture{
-  /* width: 500px;
-  height: auto; */
+  width: 500px;
+  height: auto;
 }
 
 .eventDetails{
@@ -102,8 +102,8 @@ footer p{
 }
 
 a.eventDetails:hover{
-  /* text-decoration: underline;
-  color: black; */
+  text-decoration: underline;
+  color: black; 
   background: #333;
   color: white;
   border: 2px solid #333;

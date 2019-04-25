@@ -7,7 +7,17 @@ const eventService = (() => {
             image
         });
     }
+
+    function getAllEvents() {
+        return kinvey.get('appdata', 'events', 'kinvey');
+    }
+
+    function getAllMyEvents(id) {
+       return kinvey.get('appdata', `events?query={"_acl.creator":"${id}"}`);
+    }
     return {
-        createEvent
+        createEvent,
+        getAllEvents,
+        getAllMyEvents
     }
 })()
