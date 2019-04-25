@@ -45,7 +45,6 @@ handlers.getDetails = function (ctx) {
                 this.partial('../templates/event/details.hbs');
             });
         });
-        
 }
 
 handlers.joinEvent = function (ctx) {
@@ -103,5 +102,14 @@ handlers.postEditEvent = function (ctx) {
         .then(function () {
             notifications.showSuccess(`Edited!`);
             ctx.redirect(`#/`);
-        })
+        });
+}
+
+handlers.deleteEvent = function (ctx) {
+    let id = ctx.params.id.slice(1);
+    eventService.deleteEvent(id)
+        .then(function () {
+            notifications.showSuccess(`Event Closed!`);
+            ctx.redirect(`#/`);
+        });
 }

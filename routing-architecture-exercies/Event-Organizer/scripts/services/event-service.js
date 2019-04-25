@@ -26,11 +26,17 @@ const eventService = (() => {
         
         return kinvey.update('appdata', `events/${id}`, 'kinvey', newEvent)
     }
+
+    function deleteEvent (id) {
+        return kinvey.remove('appdata', `events/${id}`, 'kinvey');
+    }
+
     return {
         createEvent,
         getAllEvents,
         getAllMyEvents,
         getEventDetails,
-        editEvent
+        editEvent,
+        deleteEvent
     }
 })()

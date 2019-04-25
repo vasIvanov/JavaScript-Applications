@@ -3,10 +3,9 @@ const handlers = {}
 $(() => {
   const app = Sammy('#root', function () {
     this.use('Handlebars', 'hbs');
-    // home page routes
+
     this.get('#/', handlers.getHome);
 
-    // user routes
     this.get('#/register', handlers.getRegister);
     this.get('#/login', handlers.getLogin);
 
@@ -21,8 +20,7 @@ $(() => {
     this.get(`#/join/:id`, handlers.joinEvent);
     this.get(`#/edit/:id`, handlers.getEditEvent);
     this.post(`#/edit/:id`, handlers.postEditEvent);
-    // ADD YOUR ROUTES HERE
-
+    this.get(`#/delete/:id`, handlers.deleteEvent);
   });
   app.run('#/');
 });
