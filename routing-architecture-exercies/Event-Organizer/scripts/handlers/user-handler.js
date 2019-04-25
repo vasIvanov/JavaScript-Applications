@@ -56,3 +56,15 @@ handlers.loginUser = function (ctx) {
     notifications.showError(err.responseJSON.description);
   });
 }
+
+handlers.getProfile = function (ctx) {
+  ctx.username = sessionStorage.getItem('username');
+  ctx.isAuth = userService.isAuth();
+  ctx.loadPartials({
+    header: '../templates/common/header.hbs',
+    footer: '../templates/common/footer.hbs'
+  }).then(function () {
+    this.partial('./templates/user/profile.hbs');
+  })
+  
+}
