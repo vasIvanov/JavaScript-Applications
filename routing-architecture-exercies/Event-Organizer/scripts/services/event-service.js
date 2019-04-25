@@ -1,10 +1,12 @@
 const eventService = (() => {
-    function createEvent(event, date, description, image) {
+    function createEvent(event, date, description, image, author) {
         return kinvey.post('appdata', 'events', 'kinvey', {
             event,
             date, 
             description, 
-            image
+            image,
+            joined: 0,
+            author
         });
     }
 
@@ -15,9 +17,14 @@ const eventService = (() => {
     function getAllMyEvents(id) {
        return kinvey.get('appdata', `events?query={"_acl.creator":"${id}"}`);
     }
+
+    function getEventDetails(id) {
+        return kinvey.get('appdata', `events?query={"_id":"${id}"}`);
+    }
     return {
         createEvent,
         getAllEvents,
-        getAllMyEvents
+        getAllMyEvents,
+        getEventDetails
     }
 })()
