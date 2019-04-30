@@ -1,7 +1,6 @@
 {{> header}}
 <section id="loginView">
-    <div class="background-spotify">
-        <div class="song-container">
+    <div class="background-spotify video-overlay">
             <h1>Login</h1>
             <form action="#/login" method="POST">
                 <div class="form-group">
@@ -16,7 +15,16 @@
             </form>
 
             <h4 class="mt-3 text-white">No account yet? <a href="#/register" class="add-link">Register</a></h4>
-        </div>
+        
     </div>
-</section>
+    <video autoplay muted loop class="video">
+  <source src="../../MP4/Soundman.mp4" type="video/mp4">
+        
+           
+
+
+</video>
+   <div class="content">
 {{> footer}}
+</div>
+</section>

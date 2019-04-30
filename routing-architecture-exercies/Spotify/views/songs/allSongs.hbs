@@ -1,7 +1,6 @@
 {{> header}}
 <section id="allSongsView">
-    <div class="background-spotify">
-        <div class="song-container">
+    <div class="background-spotify video-overlay">
             <h1>All Songs</h1>
             <a href="#/add">
                 <button type="button" class="btn-lg btn-block new-song-btn">Add a new song</button>
@@ -10,5 +9,14 @@
                 {{> song}}
             {{/each}}
     </div>
-</section>
+    <video autoplay muted loop class="video">
+  <source src="../../MP4/Cheer-Up.mp4" type="video/mp4">
+        
+           
+
+
+</video>
+   <div class="content">
 {{> footer}}
+</div>
+</section>
